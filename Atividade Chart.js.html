@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade: Chart.js</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="dividir">
+        <div>
+            <b>Gráfico de Linhas:</b>
+            <canvas id="Linhas"></canvas>
+        </div>
+
+        <div>
+            <b>Gráfico de Barras:</b>
+            <canvas id="Barras"></canvas>
+        </div>
+    </div>
+
+    <style>
+        .dividir {
+            display: flex;
+            justify-content: space-around;
+        }
+        div{
+            width: 100%;
+        }
+    </style>
+
+
+    <p style="color: rgb(169, 197, 163);"></p>
+
+</body>
+
+<script>
+    const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Temperatura',
+            data: [30, 29, 28, 25, 22, 23],
+            fill: false,
+            borderWidth: 2,
+            borderColor: 'rgb(44, 34, 234)',
+            backgroundColor: 'rgb(195, 195, 233)',
+            tension: 0.1
+        },
+        {
+            label: 'My set',
+            data: [80, 82, 80, 85, 80, 83],
+            fill: false,
+            borderWidth: 2,
+            borderColor: 'rgb(36, 129, 15)',
+            backgroundColor: 'rgb(169, 197, 163)',
+            tension: 0.1
+        }
+        ]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+</script>
+
+<script>
+    const Linhas = new Chart(
+        document.getElementById('Linhas'),
+        config
+    );
+</script>
+
+<script>
+    const ctx = document.getElementById('Barras');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            datasets: [{
+                label: 'Temperatura Média',
+                data: [22, 24, 27, 23, 20, 18],
+                borderColor: 'rgb(6, 0, 110)',
+                backgroundColor: 'rgb(44, 34, 234)',
+                borderWidth: 1,
+
+            }, {
+                label: 'Umidade Média',
+                data: [90, 89, 93, 87, 88, 82],
+                borderColor: 'rgb(196, 52, 172)',
+                backgroundColor: 'rgb(255, 0, 212)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</html>
